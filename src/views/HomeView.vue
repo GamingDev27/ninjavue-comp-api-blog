@@ -1,17 +1,24 @@
 <script>
-import { ref } from 'vue';
+import { computed, ref, watch, watchEffect } from 'vue';
 export default {
   name: 'HomeView',
   setup() {
-    const name = ref('John Doe');
-    const age = 30;
-    let p = ref(null);
+    const names = ref(['John Doe', 'Jane Doe', 'John Smith', 'Jane Smith']);
+    const search = ref('');
 
-    const handleClick = () => {
-      name.value = 'Jane Doe';
-    }
-    
-    return { name, age, handleClick, p};
+    const matchingNames = computed(() => {
+      return names.value.filter(name => name.toLowerCase().includes(search.value.toLowerCase()));
+    });
+
+    watch(search, () => {
+      console.log('search changed');
+    });
+
+    watchEffect(() => {
+      console.log('[WE]search changed',search.value);
+    });
+
+    return { names, search, matchingNames };
   },
 }
 </script>
@@ -19,8 +26,8 @@ export default {
 <template>
   <div class="home">
     <h1>Home</h1>
-    <p ref="p">My name is {{name}} and my age is {{age }}</p>
-    <button @click="handleClick">click me</button>
-    <input type="text" v-model="name" />
+    <input type="text" v-model="search">
+    <p>{{search}}</p>
+    <div v-for="name in matchingNames" :key="name">{{name}}</div>
   </div>
 </template>
