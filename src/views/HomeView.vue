@@ -1,33 +1,23 @@
-<script>
-import { computed, ref, watch, watchEffect } from 'vue';
-export default {
-  name: 'HomeView',
-  setup() {
-    const names = ref(['John Doe', 'Jane Doe', 'John Smith', 'Jane Smith']);
-    const search = ref('');
+<script setup>
+import { ref, defineComponent } from 'vue'
+import PostList from '@/components/PostList.vue'
 
-    const matchingNames = computed(() => {
-      return names.value.filter(name => name.toLowerCase().includes(search.value.toLowerCase()));
-    });
+const posts = ref([
+  { id: 1, title: 'Imperator Game', body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
+  { id: 2, title: 'Rise of the Empire 2', body: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
+  { id: 3, title: 'A New World 3', body: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.' },
+])
 
-    watch(search, () => {
-      console.log('search changed');
-    });
-
-    watchEffect(() => {
-      console.log('[WE]search changed',search.value);
-    });
-
-    return { names, search, matchingNames };
-  },
-}
+defineComponent({
+  PostList
+})
 </script>
 
 <template>
   <div class="home">
     <h1>Home</h1>
-    <input type="text" v-model="search">
-    <p>{{search}}</p>
-    <div v-for="name in matchingNames" :key="name">{{name}}</div>
+    <div class="posts">
+      <PostList :posts="posts" />
+    </div>
   </div>
 </template>
