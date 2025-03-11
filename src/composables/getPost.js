@@ -13,7 +13,7 @@ export function getPost(id) {
                 throw Error('That post does not exist')
             }
             post.value = await response.json()
-            console.log(`post.value: ${post.value}`);
+            
         } catch (err) {
             error.value = err
         }

@@ -1,9 +1,9 @@
 <template>
-  Details
+  <div v-if="error">{{ error }}</div>
   <div v-if="!post"><Spinner /></div>
-  <div v-else>
+  <div v-else class="post"> 
     <h3>{{post.title}}</h3>
-    <p>{{post.body}}</p>
+    <p class="pre">{{post.body}}</p>
   </div>
  
  

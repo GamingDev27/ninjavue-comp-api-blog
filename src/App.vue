@@ -1,12 +1,18 @@
 <script setup>
+import Navbar from '@/components/NavbarComp.vue'
+
 
 </script>
 
 <template>
+  <Navbar />
   <RouterView />
 </template>
 
 <style scoped>
+#app {
+  max-width: 100vw !important;
+}
 header {
   line-height: 1.5;
   max-height: 100vh;

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import PostDetailsView from '../views/PostDetailsView.vue'
 import CreateView from '../views/CreateView.vue'
+import TagView from '../views/TagView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,6 +22,12 @@ const router = createRouter({
       path: '/post/create',
       name: 'post-create',
       component: CreateView,
+    },
+    {
+      path: '/tags/:tag',
+      name: 'tag-filter',
+      component: TagView,
+      props: true,
     }
   ],
 })
