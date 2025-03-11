@@ -1,23 +1,34 @@
 <script setup>
-import { ref, defineComponent } from 'vue'
+import {defineComponent, onMounted } from 'vue'
 import PostList from '@/components/PostList.vue'
+import {getPosts} from '@/composables/getPosts'
+import Spinner from '@/components/Spinner.vue'
 
-const posts = ref([
-  { id: 1, title: 'Imperator Game', body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-  { id: 2, title: 'Rise of the Empire 2', body: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
-  { id: 3, title: 'A New World 3', body: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.' },
-])
+const {posts, error, load} = getPosts()
 
 defineComponent({
-  PostList
+  PostList,
+  Spinner
 })
+
+onMounted(() => {
+  load()
+})
+
 </script>
 
 <template>
   <div class="home">
     <h1>Home</h1>
-    <div class="posts">
-      <PostList :posts="posts" />
+    <router-link :to="{name: 'post-create'}">Create a Post</router-link>
+    <div v-if="error">Error: {{ error }}</div>
+
+    <div v-else-if="!posts.length"><Spinner /></div>
+    <div v-else>
+      <div class="posts">
+        <PostList :posts="posts" />
+      </div>
     </div>
+
   </div>
 </template>

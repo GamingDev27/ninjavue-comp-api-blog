@@ -1,0 +1,58 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "Empire Strikes Back",
+      "body": "The best Star Wars movie",
+      "tags": [
+        "star wars",
+        "sci-fi"
+      ]
+    },
+    {
+      "id": "2",
+      "title": "To the stars and beyod",
+      "body": "Buzz Lightyear leads the way to infinity and beyond in this Toy Story movie",
+      "tags": [
+        "toys",
+        "pixar"
+      ]
+    },
+    {
+      "id": "3",
+      "title": "The Fault in our stars",
+      "body": "A heartwarming story of two cancer patients who fall in love",
+      "tags": [
+        "romance",
+        "drama"
+      ]
+    },
+    {
+      "id": "4",
+      "title": "The Godfather",
+      "body": "The story of the Corleone family",
+      "tags": [
+        "crime",
+        "drama"
+      ]
+    },
+    {
+      "id": "5",
+      "title": "The Shawshank Redemption",
+      "body": "The story of Andy Dufresne and his escape from Shawshank prison",
+      "tags": [
+        "drama",
+        "prison"
+      ]
+    },
+    {
+      "id": "229a",
+      "title": "dsada",
+      "body": "dsadada",
+      "tags": [
+        "dsada",
+        "jonathan"
+      ]
+    }
+  ]
+}
