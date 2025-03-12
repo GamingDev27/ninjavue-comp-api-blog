@@ -23,6 +23,7 @@
 <script setup>
 import { ref } from 'vue'
 import {useRouter} from 'vue-router'
+import {projectFirestore, timestamp} from '@/firebase/config'
 
 const title = ref('')
 const body = ref('')
@@ -40,18 +41,35 @@ const handleTag = () => {
 
 const addPost = async () => {
 
-    const response = await fetch('http://localhost:3000/posts', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            title: title.value,
-            body: body.value,
-            tags: tags.value
-        })
+    // const response = await fetch('http://localhost:3000/posts', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({
+    //         title: title.value,
+    //         body: body.value,
+    //         tags: tags.value
+    //     })
+    // })
+    // if(response.ok){
+    //     title.value = ''
+    //     body.value = ''
+    //     tags.value = []
+    //     tag.value = ''
+    //     router.push({name: 'home'})
+    // }else{
+    //     alert('Failed to add post')
+    // }
+
+    const response = await projectFirestore.collection('posts').add({
+        title: title.value,
+        body: body.value,
+        tags: tags.value,
+        createdAt: timestamp(new Date())
     })
-    if(response.ok){
+    console.log(response)
+    if(response){
         title.value = ''
         body.value = ''
         tags.value = []
